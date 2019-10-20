@@ -1,0 +1,71 @@
+/* variável */
+:root{
+    --font-text: normal 18px/100% "Andale Mono", AndaleMono, monospace;
+}
+
+body{
+    font: var(--font-text);
+    background-color: rgb(29, 30, 34);
+}
+
+header {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+section {
+    font-weight: bold;
+    text-align: center;
+    background-color: white;
+    width: 600px;
+    padding: 20px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 3px 4px 10px rgb(0, 0, 0, 0.363);
+}
+
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none; /* remover as setas */
+}
+
+input[type=number] {
+    font: var(--font-text);
+    text-align: center;
+    background-color: #88878749;
+    width: 150px;
+    height: 38px;
+    padding: 1px 1px;
+    border: 0;
+    border-width: 2px;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0 , .1);
+    outline: 0;
+}
+
+select {
+    color: white;
+    font: var(--font-text);
+    background-color: rgb(95, 123, 141);
+    height: 40px;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, .1);
+    outline: 0;
+}
+
+div#res {
+    font: var(--font-text);
+    margin: auto;
+}
+
+input[type=button] {
+    color: white;
+    font: var(--font-text);
+    font-weight: bold;
+    background-color: #6BBE92;
+    height: 40px;
+    width: 150px;
+    border: 0;
+    border-width: 2px;
+    outline: 0;
+}
