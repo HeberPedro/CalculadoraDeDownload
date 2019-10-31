@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Calculadora</title>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <title>Calculadora de Download</title>
     <link rel="stylesheet" href="calculadoraDownload.css">
 </head>
 
@@ -16,25 +17,21 @@
 
     <section>
     <h2>Tamanho do Arquivo</h2>
-    <input type="number" name="tam" id="tam" placeholder="Valor">
-    <select id="tamanhoArq">
+    <input type="number" name="size" id="size" placeholder="Valor">
+    <select id="sizeFile">
         <option value="kb">Kilobyte</option>
         <option value="mb">Megabyte</option>
         <option value="gb" selected>Gigabyte</option>
     </select>
-
     <h2>Velocidade da Conexão</h2>
     <input type="number" name="vel" id="vel" placeholder="Valor">
-    <select id="velocidadeCon">
+    <select id="connectionSpeed">
         <option value="kbps" selected>KBps</option>
         <option value="mbps">MBps</option>
     </select>
-
     <h2>Tempo</h2>
-    <div id="res">Clique em calcular!</br></div>
-    <p></p>
-    
-    <input type="button" value="CALCULAR" onclick="calcular()">
+    <div id="answer">Clique em calcular!</br></div>
+    <input type="button" id="btncalculate"value="CALCULAR" onclick="calculateData()">
     </section>
 
     <script src="calculadoraDownload.js"></script>
