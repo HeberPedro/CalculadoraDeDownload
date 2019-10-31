@@ -1,40 +1,40 @@
-function calcular() {
-    let tam = document.querySelector('input#tam').value;
-    let vel = document.querySelector('input#vel').value;
-    let tipoTam = window.document.querySelector('#tamanhoArq'); //let tipoTam = document.getElementById("tamanhoArq");
-    let tipoVel = window.document.querySelector('#velocidadeCon');
-    let res = window.document.querySelector('div#res');
-    let tamSelec = (tipoTam.options[tipoTam.selectedIndex]).value; 
-    let velSelec = (tipoVel.options[tipoVel.selectedIndex]).value;
-    let mensagemErro = "Dados Inválidos!!</br>Preencha novamente";
-    let segTotal = 0;
-    
-    // transformar tamanho e velocidade p/ kbytes
-    if(tamSelec=='mb') tam *= 1024;
-        else if(tamSelec=='gb') tam *= 1024 * 1024;
-    if(velSelec=='mbps') vel *= 1024;
-    segTotal = tam / vel;
+// verifica se a tecla pressionada é "Enter"
+$(document).keypress(function(e) {
+    if(e.which == 13) $('#btncalculate').click();
+});
 
-    if(Number.isNaN(segTotal)) res.innerHTML = mensagemErro;
-        else if(Math.sign(segTotal) == -1) res.innerHTML = mensagemErro;
-            else res.innerHTML = calcularTempo(segTotal);
+function calculateData() {
+    let size = document.querySelector('input#size').value;
+    let vel = document.querySelector('input#vel').value;
+    let secTotal = 0;
+    const sizeFile = document.querySelector('select#sizeFile').value; 
+    const connectionSpeed = document.querySelector('select#connectionSpeed').value; 
+    const answer = document.querySelector('div#answer');
+    const errorMessage = "Dados Inválidos!!</br>Preencha novamente";
+    // transforma tamanho e velocidade p/ kbytes
+    if(sizeFile=='mb') size *= 1024;
+        else if(sizeFile=='gb') size *= 1024 * 1024;
+    if(connectionSpeed=='mbps') vel *= 1024;
+    secTotal = size / vel;
+    // exceções
+    if((vel==='') || (vel<=0)) answer.innerHTML = errorMessage;
+        else if(Number.isNaN(secTotal)) answer.innerHTML = errorMessage;
+            else if(secTotal<=0) answer.innerHTML = errorMessage;
+                else answer.innerHTML = calculateTime(secTotal);
 }
 
-function calcularTempo(segTotal) {
-    // converte "segundos" p/ formato "horas:minutos:segundos"
-    let hora = 0;
-    let minuto = 0;
-    let segundo = 0;
-    let tempo = " ";
+function calculateTime(secTotal) {
+    // converte segundos p/ formato "Hora(s) Minuto(s) Segundo(s)"
+    let hour=0, minute=0, second=0;
 
-    if (segTotal < 1) return tempo = "Menos de 1 (Um) Segundo!";
-        else if(segTotal > 2592000) return tempo = "Mais de 1 (Um) Mês!";
+    if (secTotal < 1) return "Menos de 1 (Um) Segundo!";
+        else if(secTotal > 2592000) return "Mais de 1 (Um) Mês!";
             else {
-                hora = Math.floor (segTotal/3600);
-                minuto = Math.floor ((segTotal - (hora*3600)) /60);
-                segundo = Math.floor (segTotal - ((hora*3600) + (minuto*60)));
-                if(segTotal >= 3600) return tempo = `${hora} Hora(s) ${minuto} Min(s) ${segundo} Seg(s)`;
-                    else if((segTotal < 3600) && (segTotal >= 60)) return tempo = `${minuto} Minuto(s) ${segundo} Seg(s)`;
-                        else return tempo = `${segundo} Segundo(s)`;
+                hour = Math.floor (secTotal/3600);
+                minute = Math.floor ((secTotal - (hour*3600)) /60);
+                second = Math.floor (secTotal - ((hour*3600) + (minute*60)));
+                if(secTotal >= 3600) return `${hour} Hora(s) ${minute} Min(s) ${second} Seg(s)`;
+                    else if((secTotal < 3600) && (secTotal >= 60)) return `${minute} Minuto(s) ${second} Seg(s)`;
+                        else return `${second} Segundo(s)`;
             }
 }
