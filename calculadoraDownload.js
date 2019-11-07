@@ -10,17 +10,21 @@ function calculateData() {
     const sizeFile = document.querySelector('select#sizeFile').value; 
     const connectionSpeed = document.querySelector('select#connectionSpeed').value; 
     const answer = document.querySelector('div#answer');
-    const errorMessage = "Dados Inválidos!!</br>Preencha novamente";
+    const error = "Dados Inválidos!!</br>Preencha novamente";
     // transforma tamanho e velocidade p/ kbytes
     if(sizeFile=='mb') size *= 1024;
         else if(sizeFile=='gb') size *= 1024 * 1024;
     if(connectionSpeed=='mbps') vel *= 1024;
     secTotal = size / vel;
     // exceções
-    if((vel==='') || (vel<=0)) answer.innerHTML = errorMessage;
-        else if(Number.isNaN(secTotal)) answer.innerHTML = errorMessage;
-            else if(secTotal<=0) answer.innerHTML = errorMessage;
-                else answer.innerHTML = calculateTime(secTotal);
+    try {
+        if((vel=='') || (vel<=0)) throw error;
+        if(Number.isNaN(secTotal)) throw error;
+        if(secTotal<=0) throw error;
+        answer.innerHTML = calculateTime(secTotal);
+    } catch (error) {
+        answer.innerHTML = error;
+    }
 }
 
 function calculateTime(secTotal) {
