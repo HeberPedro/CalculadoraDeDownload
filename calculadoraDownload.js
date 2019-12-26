@@ -4,13 +4,13 @@ $(document).keypress(function(e) {
 });
 
 function calculateData() {
-    let size = document.querySelector('input#size').value;
-    let vel = document.querySelector('input#vel').value;
-    let secTotal = 0;
-    const sizeFile = document.querySelector('select#sizeFile').value; 
-    const connectionSpeed = document.querySelector('select#connectionSpeed').value; 
-    const answer = document.querySelector('div#answer');
-    const error = "Dados Inválidos!!</br>Preencha novamente";
+    let size = document.querySelector('input#size').value,
+        vel = document.querySelector('input#vel').value,
+        secTotal = 0;
+    const sizeFile = document.querySelector('select#sizeFile').value, 
+            connectionSpeed = document.querySelector('select#connectionSpeed').value,
+            answer = document.querySelector('div#answer'),
+            error = "Dados Inválidos!!</br>Preencha novamente";
     // transforma tamanho e velocidade p/ kbytes
     if(sizeFile=='mb') size *= 1024;
         else if(sizeFile=='gb') size *= 1024 * 1024;
